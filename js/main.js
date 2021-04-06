@@ -18,13 +18,19 @@ $(document).ready(() => {
         e.preventDefault();
         return false;
     });
-    // Places '#searchForm' in the proper location on the DOM according to width of window 
+    windowWidth();
+    window.addEventListener('resize', windowWidth);
+ });
+
+// Places '#searchForm' in the proper location on the DOM according to width of window 
+function windowWidth() {
     if (window.screen.width < 1200) {
         $("#hamburgerLinks").prepend($("#searchForm"));
     } else {
         $(".mainHeader > a:nth-child(1)").after($("#searchForm"));
     }
- });
+}
+
 
 /////////////////////////////
 //// SEARCH (MOVIE.HTML) ////
