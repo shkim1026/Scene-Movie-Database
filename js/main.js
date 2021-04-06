@@ -22,6 +22,7 @@ $(document).ready(() => {
     window.addEventListener('resize', windowWidth);
  });
 
+ 
 // Places '#searchForm' in the proper location on the DOM according to width of window 
 function windowWidth() {
     if (window.screen.width < 1200) {
