@@ -98,11 +98,11 @@ function request(url, displayID, containerID, listID){
            $.each(resp, (index, movie) => {
                 ////Ensures proper titles populate on DOM (Movies = "title" / TV shows = "name")
                 let title = movie.title;
-                let titleNoApo = title.replace(/'/g, ""); //Replaces "'" with "%27" for query
-                /////////////////////////////////////
-                //////////////////////////////////////
+                let titleNoApo = '';
                 if (title === undefined) {
                    title = movie.name;
+                } else {
+                    titleNoApo = title.replace(/'/g, ""); //Replaces "'" with "" for search
                 }
                 let year = movie.release_date;
                 if (year == undefined) {
