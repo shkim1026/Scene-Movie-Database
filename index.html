@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scene: Movie Database</title>
+    
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Squada+One&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="shortcut icon" href="#">
+</head>
+<body>
+    <nav class="navbar navbar-default">
+            <div class="navbar-header">
+                <div class="mainHeader">
+                    <a class="navbar-brand" href="index.html">
+                        <img class="logo" src="images/scenelogo.png">
+                        <p class="source">Sourced by TMDB & OMDB API</p>
+                    </a>
+                    <form id="searchForm">
+                        <input type="text" class="form-control" id="searchText" placeholder="Enter a movie/TV show">
+                    </form>
+                    <a href="javascript:void(0);" class="icon" onclick="toggleHamburger()">
+                        <i class="fa fa-bars"></i>
+                    </a>
+                </div>
+                
+                <div id="hamburgerLinks">
+                    <a href="#footerModal" data-bs-toggle="modal" data-bs-target="#footerModal"><p class="aboutLink" onclick="hideLinks()">About</p></a>
+                    <a href="#contactModal" data-bs-toggle="modal" data-bs-target="#contactModal"><p class="aboutLink" onclick="hideLinks()">Contact</p></a>
+                </div>
+            </div>      
+    </nav>
+
+    <div class=main>
+        <div class="firstDiv">
+            <h4 class="category">In Theatres</h4>
+            <div id="np"></div>
+        </div> 
+
+        <div>
+            <h4 class="category">Upcoming</h4>
+            <div id="up"></div>
+        </div>
+
+        <div>
+            <h4 class="category">Trending TV Shows</h4>
+            <div id="trTV"></div>
+        </div> 
+
+        <div>
+            <h4 class="category">Trending Movies</h4>
+            <div id="trM" class="lastCategory"></div>
+        </div> 
+
+    </div>
+    
+    <div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true" role="dialog">
+        <div class="movieModal modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+            <!-- Generated modal placed here -->
+        </div>
+    </div>
+    
+
+    <div class="modal fade" id="footerModal" tabindex="-1" aria-labelledby="footerModalLabel" aria-hidden="true">
+        <div class="modal-dialog footerDialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title noMarginBot" id="footerModalLabel">About</h4>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body noMarginBot">
+                <h5 class="marginL">Languages used:</h5>
+                <div class="center threeCol">
+                    <img class="langLogo" title="HTML 5" src="https://img.icons8.com/color/48/000000/html-5.png"/>
+                    <img class="langLogo" title="CSS 3" src="https://img.icons8.com/color/48/000000/css3.png"/>
+                    <img class="langLogo" title="JavaScript 5" src="https://img.icons8.com/color/48/000000/javascript-logo-1.png"/>
+                </div>
+                <h5 class="marginL">Resources / Libraries:</h5>
+                <div class="center fiveCol">
+                    <a href="https://developers.themoviedb.org/3/getting-started/introduction" target="_blank"><img class="srcLogo smPad" title="The Movie Database" src="images/TMDB.svg"></a>
+                    <a href="http://www.omdbapi.com/" target="_blank" class="selfJust"><img class="srcLogo" title="Open Movie Database" src="https://img.icons8.com/nolan/64/movie.png"/></a>
+                    <a href="https://jquery.com/" target="_blank" class="selfJust"><img class="srcLogo" title="jQuery" src="https://www.vectorlogo.zone/logos/jquery/jquery-vertical.svg"></a>
+                    <a href="https://getbootstrap.com/docs/5.0/getting-started/introduction/" target="_blank" class="selfJust"><img class="langLogo srcLogo" title="Bootstrap 5" src="https://img.icons8.com/color/48/000000/bootstrap.png"/></a>
+                    <a href="https://bootswatch.com/" target="_blank" class="selfJust"><img class="langLogo srcLogo" title="Bootswatch" src="https://www.vectorlogo.zone/logos/bootswatch/bootswatch-icon.svg"></a>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+        <div class="modal-dialog contactDialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title noMarginBot" id="contactModalLabel">Contact</h4>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body center noMarginBot">
+                <p class="selfJust pFontSize noMarginBot">Interested in working together?</p>
+                <p class="selfJust pFontSize">I would love to hear from you!</p>
+                <br>
+                <a class="selfJust noMarginBot pFontSize" href="mailto:shkim@gmail.com">shkim1026@gmail.com</a>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <footer>
+        <div>
+            <br>
+            <a href="index.html"><img class="footerLogo" src="images/scenelogo.png"></a>
+            <a href="#footerModal" data-bs-toggle="modal" data-bs-target="#footerModal"><p class="aboutLink">About</p></a>
+            <a href="#contactModal" data-bs-toggle="modal" data-bs-target="#contactModal"><p class="aboutLink">Contact</p></a>
+
+            <small>&copy; Copyright 2021, Steven H. Kim</small>
+        </div>
+    </footer>
+
+    <script
+			  src="https://code.jquery.com/jquery-3.6.0.min.js"
+			  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+			  crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="js/main.js"></script>    
+</body>
+</html>
+
+
+
+
+
+

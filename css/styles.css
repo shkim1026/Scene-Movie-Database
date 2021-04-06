@@ -1,0 +1,389 @@
+
+.navbar,
+.navbar-header,
+#searchForm,
+img,
+.splide__slide img {
+    width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.aboutLink {
+    font-family: 'Squada One', cursive;
+}
+
+a {
+    color: white;
+}
+
+a:hover {
+    color: #4fa556;
+    text-decoration: none;
+}
+
+/* ---------------------------- */
+/* HEADER */
+/* ---------------------------- */
+.navbar{
+    background-color:rgb(31, 31, 31);
+    position: fixed;
+    z-index: 5000;
+}
+
+.icon {
+    display: grid;
+    justify-content: end;
+    margin-left: auto;
+}
+
+.mainHeader {
+    display: grid; 
+    grid-template-columns: auto 50% auto;
+    justify-content: space-around;
+}
+
+.navbar-brand {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+#searchForm {
+    max-width: 500px;
+    justify-self: center;
+    margin-top: 1rem;
+}
+
+.logo {
+    object-fit: cover;
+    object-position: 0 50%;
+    height: 40px;
+}
+
+.source {
+    font-size: 11px;
+    color: white;
+    text-align: center;
+    margin: 0;
+    padding-left: 12px;
+}
+
+#hamburgerLinks,
+.fa {
+    display: none;
+}
+
+
+/* ---------------------------- */
+/* MAIN CONTENT */
+/* ---------------------------- */
+.main {
+    overflow: hidden;
+    padding-top: 3rem;
+    background-color: #060606;
+    background-image: linear-gradient(rgb(36, 36, 36), black 75%);
+    background-attachment: fixed;
+}
+
+.firstDiv {
+    padding-top: 1rem;
+}
+
+.category {
+    margin-left: 1.5em;
+    text-transform: uppercase;
+}
+
+.image {
+    height: auto;
+    padding: 5px;
+}
+
+.movieContainer,
+.container {
+    max-width:none;
+}
+
+
+.btn {
+    display: none;
+}
+
+/* ---------------------------- */
+/* SLIDER */
+/* ---------------------------- */
+.splide__track {
+    overflow: visible;
+}
+
+.splide__list {
+    padding-bottom: 30px !important;
+    padding-left: 20px !important;
+}
+
+.splide__slide img {
+    max-width: 200px;
+    height: auto;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    -ms-transform: translateZ(0); /* IE 9 */
+    -webkit-transform: translateZ(0); /* Chrome, Safari, Opera */
+    transform: translateZ(0);
+}
+
+.splide__slide{
+    -webkit-transition: 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    -moz-transition: 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    -o-transition: 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition: 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.splide__slide:hover {
+    transform: scale(1.4);
+    margin-left: 2rem;
+    margin-right: 2rem;
+    z-index: 1000;
+}
+
+.close {
+    margin: 1rem 1rem -2rem auto;
+    z-index: 500;
+}
+
+.lastCategory {
+    padding-bottom: 3em;
+}
+
+/* ---------------------------- */
+/* MODAL */
+/* ---------------------------- */
+.modal-title {
+    margin-top: 0rem;
+    margin-bottom: 1rem;
+    display: flex;
+    line-height: 1em;
+}
+
+.modal-body,
+.modal-title {
+    justify-content: center;
+}
+
+.tagline {
+    font-size: 1.3em;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.borderBot {
+    border-bottom: solid 1px white;
+    padding-bottom: 1rem;
+}
+
+.bundle {
+    margin-bottom: 0rem;
+}
+
+.row {
+    align-items: center;
+}
+
+.displayDiv {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 10%);
+}
+
+.displayDiv img {
+    max-width: 200px;
+}
+
+.infoPoster{
+    border: 1px solid black;
+    padding: 5px;
+    box-shadow: 8px 8px 15px rgb(0 0 0);
+}
+
+.btn-close {
+    background-color: white;
+}
+
+/* ---------------------------- */
+/* SEARCH */
+/* ---------------------------- */
+.displayDiv {
+    padding-top: 2rem;
+}
+
+.well {
+    margin-bottom: 2rem;
+}
+
+.titleP{
+    margin: 0.5rem 0rem;
+    font-size: 1.75rem;
+}
+
+.btn {
+    background-image: linear-gradient(#519056, #1da7a7);
+    border-color: #0d4e46;
+}
+
+/* ---------------------------- */
+/* FOOTER */
+/* ---------------------------- */
+footer {
+    display: grid;
+    justify-content: center;
+    justify-items: center;
+    text-align: center;
+    background-color: rgb(04, 04, 04);
+    padding-bottom: 5em;
+}
+
+.footerLogo {
+    object-fit: none;
+    height: 50px;
+}
+
+.langLogo {
+    width: auto;
+}
+
+.srcLogo {
+    max-width: 50px;
+}
+
+.aboutLink {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.footerDialog,
+.contactDialog {
+    margin-top: 5rem;
+}
+
+#footerModalLabel,
+#contactModalLabel {
+    margin-left: auto;
+}
+
+.marginL {
+    margin-left: 1em;
+}
+
+.center {
+    display: grid;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1rem;
+}
+
+.selfJust {
+    justify-self: center;
+}
+
+.noMarginBot {
+    margin-bottom: 0;
+}
+
+.pFontSize {
+    font-size: 1rem;
+}
+
+/* Contact Modal */
+.threeCol {
+    grid-template-columns: 33.3% 33.3% 33.3%;
+    justify-items: center;
+}
+
+.fiveCol {
+    grid-template-columns: 20% 20% 20% 20% 20%;
+}
+
+.smPad {
+    padding-top: 7px;
+}
+
+/* @media (max-width: 1919.98px) {
+    .displayDiv {
+        grid-template-columns: repeat(auto-fill, 16%);
+    }
+} */
+
+@media (max-width: 1199.98px) {
+    .mainHeader {
+        grid-template-columns: 50% 50%;
+    }
+    .fa {
+        display: inline-block;
+        font-size: 1.5em;
+        padding-top: 0.3rem;
+    }
+    .logo {
+        max-width: fit-content;
+        max-width: -moz-fit-content;
+    }
+    #searchText,
+    .source {
+        display: none;
+    }
+    .aboutLink {
+        text-transform: uppercase;
+        font-size: 1.5em;
+    }
+/* //////////////////////////////////// */
+    .splide__track {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+/* //////////////////////////////////// */
+    .modal-dialog {
+        margin-top: 3.4rem;
+    }
+    .modal-title {
+        margin-top: 1rem;
+    }
+    .category {
+        font-size: 1.5rem;
+    }
+/* ///////////////////////////////////// */
+    .footerDialog,
+    .contactDialog {
+        margin-top: 8.4rem;
+    }
+    .marginL {
+        margin-left: 0;
+    }
+
+/* ////////////////////////////////////// */    
+    .displayDiv {
+        grid-template-columns: repeat(auto-fill, 15%);
+        justify-content: space-evenly;
+        padding-top: 1.54rem;
+    }
+    .image {
+        height: auto;
+    }
+}
+
+/* MEDIUM DEVICES */
+@media (max-width: 991.98px) {
+    .displayDiv {
+        grid-template-columns: repeat(auto-fill, 20%);
+    }
+}
+
+/* SMALL DEVICES */
+@media (max-width: 575.98px) {
+    .displayDiv {
+        grid-template-columns: repeat(auto-fill, 45%);
+    }
+    .titleP {
+        font-size: 1.3rem;
+    }
+}
