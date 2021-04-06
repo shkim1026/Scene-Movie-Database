@@ -187,7 +187,7 @@ function openModal() {
         console.log('queryTitle', queryTitle);
         ////
 
-        let omdb = `http://www.omdbapi.com/?t=${queryTitle}&y=${year}&apikey=dbbc79ec`;
+        let omdb = `https://www.omdbapi.com/?t=${queryTitle}&y=${year}&apikey=dbbc79ec`;
         let requestOne = axios.get(omdb);
         let requestTwo = axios.get(tmdb);
 
@@ -300,7 +300,7 @@ function openModal() {
         }
         console.log('queryName', queryName);
 
-        let omdb = `http://www.omdbapi.com/?t=${queryName}&y=${year}&apikey=dbbc79ec`;
+        let omdb = `https://www.omdbapi.com/?t=${queryName}&y=${year}&apikey=dbbc79ec`;
         let requestOne = axios.get(omdb);
         let requestThree = axios.get(tmdbTV);
         
