@@ -97,7 +97,10 @@ function request(url, displayID, containerID, listID){
             `;
            $.each(resp, (index, movie) => {
                 ////Ensures proper titles populate on DOM (Movies = "title" / TV shows = "name")
-                let title = movie.title; 
+                let title = movie.title;
+                let titleNoApo = title.replace(/'/g, ""); //Replaces "'" with "%27" for query
+                /////////////////////////////////////
+                //////////////////////////////////////
                 if (title === undefined) {
                    title = movie.name;
                 }
@@ -109,7 +112,7 @@ function request(url, displayID, containerID, listID){
                 output +=`
                         <div class="splide__slide">
                             <div class="splide__slide__container">
-                                <a class="movieLink" onclick='movieSelected(${movie.id}, "${movie.media_type}", "${movie.title}", "${movie.name}", "${year}", "${movie.poster_path}")' data-bs-toggle="modal" data-bs-target="#infoModal" href="#">
+                                <a class="movieLink" onclick='movieSelected(${movie.id}, "${movie.media_type}", "${titleNoApo}", "${movie.name}", "${year}", "${movie.poster_path}")' data-bs-toggle="modal" data-bs-target="#infoModal" href="#">
                                     <img class="image" src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${title}">
                                 </a>
                             </div>
