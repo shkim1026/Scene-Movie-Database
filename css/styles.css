@@ -309,12 +309,6 @@ footer {
     padding-top: 7px;
 }
 
-/* @media (max-width: 1919.98px) {
-    .displayDiv {
-        grid-template-columns: repeat(auto-fill, 16%);
-    }
-} */
-
 @media (max-width: 1199.98px) {
     .mainHeader {
         grid-template-columns: 50% 50%;

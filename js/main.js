@@ -5,13 +5,10 @@ $(document).ready(() => {
         request('https://api.themoviedb.org/3/trending/tv/day?api_key=68f3870916adfbbd1dbced0d703b6de4', 'trTV', 'trendingTV', 'trendingTvSlide');
         request('https://api.themoviedb.org/3/movie/upcoming?api_key=68f3870916adfbbd1dbced0d703b6de4&language=en-US', 'up', 'upcoming', 'upcomingSlide');
         request('https://api.themoviedb.org/3/trending/movie/day?api_key=68f3870916adfbbd1dbced0d703b6de4', 'trM', 'trendingMovies', 'trendingMovieSlide');
-        console.log('request complete')
     } else {
-        console.log('searchText', searchText)
         search(searchText);
     }
     $('#searchForm').on('submit', (e) => {
-        console.log('search form submitted');
         let value = $('#searchText').val();
         sessionStorage.setItem('searchText', value);
         window.location.href='/movie.html';
@@ -37,12 +34,9 @@ function windowWidth() {
 //// SEARCH (MOVIE.HTML) ////
 /////////////////////////////
 function search(searchText) {
-    console.log('searched')
     axios.get(`https://api.themoviedb.org/3/search/multi?api_key=68f3870916adfbbd1dbced0d703b6de4&language=en-US&query=${searchText}&page=1&include_adult=false`)
         .then((response) => {
-            console.log('response', response);
             let results = response.data.results;
-            console.log('results', results);
             let output = '';
 
             $.each(results, (index, item) => {
@@ -71,7 +65,6 @@ function search(searchText) {
                 ` 
             });
             $('.displayDiv').html(output);
-            console.log('search displayed');
         })
         .catch((err) => {
             console.log(err);
@@ -84,7 +77,6 @@ function search(searchText) {
 function request(url, displayID, containerID, listID){
     axios.get(url)
        .then((response) => {
-            console.log(response);
             let resp = response.data.results;
             let output = '';
             let display = '';
@@ -121,7 +113,6 @@ function request(url, displayID, containerID, listID){
                 display += output;
                 output = '';
            });
-           console.log('request displayed')
            
            $(`#${displayID}`).html(container); //Creates container
            $(`#${listID}`).html(display); //Displays movies onto DOM
@@ -138,7 +129,6 @@ function request(url, displayID, containerID, listID){
 //////////////////////////
 //Stores movie or show information to localStorage after onclick
 function movieSelected(id, media, title, name, year, poster) {
-    console.log('clicked', id, media, title, name, year, poster);
     let yearOnly = year.slice(0, -6); //Removes the month and day of release date
     sessionStorage.setItem('imdbID', id);
     sessionStorage.setItem('mediaType', media);
@@ -146,7 +136,6 @@ function movieSelected(id, media, title, name, year, poster) {
     sessionStorage.setItem('name', name); //<~ 'name' is the 'title' for TV shows
     sessionStorage.setItem('year', yearOnly);
     sessionStorage.setItem('poster', poster);
-    console.log(`id:${id} | media:${media} | name:${name} | title:${title} | year:${yearOnly} | poster:${poster}`);
     openModal();
 }
 
@@ -178,24 +167,17 @@ function openModal() {
     ////
     
     if (mediaType === 'undefined' || mediaType === 'movie') {    //If selected item is a MOVIE...
-        console.log('mediatype', mediaType);
 
         ////Readys Title in sessionStorage for query
         let title = sessionStorage.getItem('title');
-        console.log('title', title);
         let andTitle = title.replace(/&/g, "and"); //Replaces "&" with "and"
-        console.log('andTitle', andTitle);
         let singleQ = andTitle.replace(/'/g, "%27"); //Replaces "'" with "%27" for query
-        console.log('singleQ', singleQ);
         let colon = singleQ.replace(/:/g, "%3A"); //Replaces ":" with  "%3A" for query
-        console.log('colon', colon);
         let space = colon.split(' ').join('+'); //Replaces " " with "+"
         let queryTitle = space;
         if (!queryTitle.includes("%27") && !queryTitle.includes("%3A")) {
             queryTitle = queryTitle.replace(/%/g, "%25"); //Ensures usage of "%" in query
         }
-        console.log('queryTitle', queryTitle);
-        ////
 
         let omdb = `https://www.omdbapi.com/?t=${queryTitle}&y=${year}&apikey=dbbc79ec`;
         let requestOne = axios.get(omdb);
@@ -204,17 +186,13 @@ function openModal() {
 
         axios.all([requestOne, requestTwo])
             .then(axios.spread((...responses) => {
-                console.log('responses', responses)
                 const omdbResponse = responses[0];
                 const tmdbResponse = responses[1];
-                console.log(omdbResponse);
-                console.log(tmdbResponse);
                 let omdbMovie = omdbResponse.data;
                 let tmdbMovie = tmdbResponse.data;
                 let info;
                 
                 if (omdbMovie.Response === "False") {
-                    console.log('Not found in OMDB database', omdbMovie.Response);
                     info = `
                     <div class="modal-content infoRow">
                         
@@ -280,9 +258,7 @@ function openModal() {
                     
                 ` 
                 }
-                console.log("retrieved movie info");
                 $('.movieModal').html(info);
-                console.log("modal");
                 if (tmdbMovie.tagline === "") {
                     $(".tagline").css("display", "none");
                 }
@@ -293,22 +269,16 @@ function openModal() {
                 console.log(errors);
             });
     } else {        //Else the selected item is a TV SHOW
-        console.log('tv');
 
         let name = sessionStorage.getItem('name');
-        console.log('name', name);
         let andName = name.replace(/&/g, "and"); //Replaces "&" with "and"
-        console.log('andName', andName);
         let singleQ = andName.replace(/'/g, "%27"); //Replaces "'" with "%27" for query
-        console.log('singleQ', singleQ);
         let colon = singleQ.replace(/:/g, "%3A"); //Replaces ":" with  "%3A" for query
-        console.log('colon', colon);
         let space = colon.split(' ').join('+'); //Replaces " " with "+"
         let queryName = space;
         if (!queryName.includes("%27") && !queryName.includes("%3A")) {
             queryName = queryName.replace(/%/g, "%25"); //Ensures usage of "%" in query
         }
-        console.log('queryName', queryName);
 
         let omdb = `https://www.omdbapi.com/?t=${queryName}&y=${year}&apikey=dbbc79ec`;
         let requestOne = axios.get(omdb);
@@ -318,15 +288,11 @@ function openModal() {
             .then(axios.spread((...responses) => {
                 const omdbResponse = responses[0];
                 const tmdbResponse = responses[1];
-                console.log(omdbResponse);
-                console.log(tmdbResponse);
                 let omdbTV = omdbResponse.data;
                 let tmdbTV = tmdbResponse.data;
                 let tagline = tmdbTV.tagline;
-                console.log("tagline", tagline);
                 if (tmdbTV.last_air_date === null) {
                     tmdbTV.last_air_date = "N/A"; //Replaces Last Air Date to "N/A" when "null"
-                    console.log("air date", tmdbTV.last_air_date);
                 }
                 
                 let info = `
@@ -364,9 +330,7 @@ function openModal() {
                     </div>
                     
                 `
-                console.log("retrieved TV info");
                 $('.movieModal').html(info);
-                console.log("modal");
                 if (tagline === "") {
                     $(".tagline").css("display", "none");
                 }
@@ -380,7 +344,6 @@ function openModal() {
 //// SLIDER //////////////
 //////////////////////////
 function createSlide(slideDiv) {
-    console.log('added slider')
     new Splide( slideDiv, {
         rewind      : true,
         padding     : {
@@ -430,14 +393,3 @@ function toggleHamburger() {
 function hideLinks() {
     $("#hamburgerLinks").css("display", "none");
 }
-    
-
- // https://api.themoviedb.org/3/movie/527774?api_key=68f3870916adfbbd1dbced0d703b6de4
-
- // api key: 68f3870916adfbbd1dbced0d703b6de4
-
- // backdrop: hJuDvwzS0SPlsE6MNFOpznQltDZ.jpg
-
- // https://api.themoviedb.org/3/trending/all/day?api_key=68f3870916adfbbd1dbced0d703b6de4
-
- // https://api.themoviedb.org/3/configuration?api_key=68f3870916adfbbd1dbced0d703b6de4
